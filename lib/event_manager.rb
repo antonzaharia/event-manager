@@ -10,6 +10,7 @@ class EventManager
     handlers.delete handler
   end
 
-  def broadcast(handler)
+  def broadcast(*args)
+    handlers.each { |handler| handler.call(*args) }
   end
 end
