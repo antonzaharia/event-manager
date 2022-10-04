@@ -1,5 +1,4 @@
 require './lib/event_manager.rb'
-require 'pry'
 
 describe EventManager do
   let(:manager) { EventManager.new }
@@ -45,6 +44,15 @@ describe EventManager do
 
       expect(array[0]).to eq('element1')
       expect(array[1]).to eq('element2')
+    end
+    it 'should call all handlers' do
+      manager.subscribe event
+      manager.subscribe add_to_array
+
+      manager.broadcast(1)
+
+      expect(array.first).to eq(1)
+      expect(array[1]).to eq(1)
     end
   end
 
