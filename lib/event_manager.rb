@@ -1,6 +1,7 @@
 class EventManager
 
   def handlers
+    []
   end
 
   def subscribe(handler)

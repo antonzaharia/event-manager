@@ -1,14 +1,25 @@
+require './lib/event_manager.rb'
+require 'pry'
+
 describe EventManager do
+  let(:manager) { EventManager.new }
+  let(:array) { [] }
+  let(:event) { proc { |test| array << test } }
 
   describe '.subscribe' do
     it 'should add a new handler' do
-      expect(true).to eq(false)
+      manager.subscribe event
+
+      expect(manager.handlers.size).to eq(1)
     end
   end
 
   describe '.unsubscribe' do
     it 'should remove the handler' do
-      expect(true).to eq(false)
+      manager.subscribe event
+      manager.unsubscribe event
+
+      expect(manager.handlers.size).to eq(0)
     end
   end
 
