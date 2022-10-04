@@ -26,18 +26,21 @@ describe EventManager do
   end
 
   describe '.broadcast' do
+
     it 'should broadcast an event with no arguments' do
       manager.subscribe add_to_array
       manager.broadcast()
 
       expect(array).to match_array([])
     end
+
     it 'should broadcast an event with one argument' do
       manager.subscribe add_to_array
       manager.broadcast('element1')
 
       expect(array[0]).to eq('element1')
     end
+
     it 'should broadcast an event with two arguments' do
       manager.subscribe add_to_array
       manager.broadcast('element1', 'element2')
@@ -45,6 +48,7 @@ describe EventManager do
       expect(array[0]).to eq('element1')
       expect(array[1]).to eq('element2')
     end
+
     it 'should call all handlers' do
       manager.subscribe event
       manager.subscribe add_to_array
@@ -54,6 +58,7 @@ describe EventManager do
       expect(array.first).to eq(1)
       expect(array[1]).to eq(1)
     end
+
   end
 
 end
