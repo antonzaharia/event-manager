@@ -1,13 +1,13 @@
 class EventManager
 
-  def handlers
-    []
-  end
+  def handlers() = @handlers ||= []
 
   def subscribe(handler)
+    handlers << handler
   end
 
   def unsubscribe(handler)
+    handlers.delete handler
   end
 
   def broadcast(handler)
